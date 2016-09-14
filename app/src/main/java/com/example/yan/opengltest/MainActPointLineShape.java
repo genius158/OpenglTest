@@ -4,6 +4,7 @@ import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -70,6 +71,15 @@ public class MainActPointLineShape extends AppCompatActivity implements GLSurfac
             0.8f, -0.4f * 1.732f, 0.0f,
             0.0f, 0.4f * 1.732f, 0.0f,
     };
+    float vertexArray2[] = {
+            -0.8f, -0.4f * 1.732f, 0.0f,
+            0.0f, -0.4f * 1.732f, 0.0f,
+            -0.4f, 0.4f * 1.732f, 0.0f,
+
+            0.0f, -0.0f * 1.732f, 0.0f,
+            0.8f, -0.0f * 1.732f, 0.0f,
+            0.4f, 0.4f * 1.732f, 0.0f,
+    };
 
     @Override
     public void onDrawFrame(GL10 gl) {
@@ -94,9 +104,30 @@ public class MainActPointLineShape extends AppCompatActivity implements GLSurfac
         gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertex);
         gl.glDrawArrays(GL10.GL_POINTS, 0, 3);
         gl.glDrawArrays(GL10.GL_LINE_LOOP, 0, 3);
-        gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 3);
 
+
+        /*
+         *图形
+         */
+        ByteBuffer vbb2 = ByteBuffer.allocateDirect(vertexArray2.length * 4);
+        vbb2.order(ByteOrder.nativeOrder());
+        FloatBuffer vertex2 = vbb2.asFloatBuffer();
+        vertex2.put(vertexArray2);
+        vertex2.position(0);
+
+
+        gl.glLoadIdentity();
+        gl.glTranslatef(0, 0, -4);
+
+        gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertex2);
+
+        gl.glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+        // gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 6);
+        // gl.glDrawArrays(GL10.GL_TRIANGLE_STRIP, 0, 6);
+        gl.glDrawArrays(GL10.GL_TRIANGLE_FAN, 0, 6);
         gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+
+        Log.i("glDrawArrays","glDrawArraysglDrawArraysglDrawArrays");
 
     }
 }
