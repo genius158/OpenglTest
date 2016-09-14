@@ -137,7 +137,7 @@ public class MainActStereo extends AppCompatActivity implements GLSurfaceView.Re
 
         gl.glLoadIdentity();
         gl.glTranslatef(0, 0, -5);
-        //选装角度，x、y、z轴
+        //旋转角度，x、y、z轴
         gl.glRotatef(angle, 1, 1, 0);
         gl.glFrontFace(GL10.GL_CCW);
         gl.glEnable(GL10.GL_CULL_FACE);
