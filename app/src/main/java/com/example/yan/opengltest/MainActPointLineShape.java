@@ -15,7 +15,7 @@ import javax.microedition.khronos.opengles.GL10;
 /**
  * Created by yan on 2016/9/14.
  */
-public class MainAct extends AppCompatActivity implements GLSurfaceView.Renderer {
+public class MainActPointLineShape extends AppCompatActivity implements GLSurfaceView.Renderer {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,12 +87,15 @@ public class MainAct extends AppCompatActivity implements GLSurfaceView.Renderer
         gl.glPointSize(16f);
         gl.glLoadIdentity();
         gl.glTranslatef(0, 2, -14);
+        gl.glLineWidth(12f);
 
         gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);
 
         gl.glVertexPointer(3, GL10.GL_FLOAT, 0, vertex);
         gl.glDrawArrays(GL10.GL_POINTS, 0, 3);
         gl.glDrawArrays(GL10.GL_LINE_LOOP, 0, 3);
+        gl.glDrawArrays(GL10.GL_TRIANGLES, 0, 3);
+
         gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
 
     }
